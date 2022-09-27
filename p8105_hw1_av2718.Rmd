@@ -1,0 +1,7 @@
+---
+title: "p8105_hw1_av2718"
+author: "Angelica Vina Albarracin"
+date: "2022-09-27"
+output: pdf_document
+---
+
