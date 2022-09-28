@@ -1,7 +1,67 @@
 ---
-title: "p8105_hw1_av2718"
-author: "Angelica Vina Albarracin"
+title: "P8105 Homework I"
 date: "2022-09-27"
-output: pdf_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
+```{r, message=FALSE}
+# read and name data
+data("penguins", package = "palmerpenguins")
+
+# load the packages necessary for submission to knit.
+library(tidyverse)
+
+```
+
+## Problem 1
+
+The database _penguins_ has `r ncol(penguins)` variables and  `r nrow(penguins)` observations. Here's a code chunk that creates an overall summary table, including the names of all the variables. As we can see in the table, the mean **flipper length** is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`.
+
+```{r, message=FALSE}
+
+## create overall summary table
+library(gtsummary)
+penguins %>%
+  tbl_summary(missing_text = "(Missing)", # counts missing values
+              statistic = list(all_continuous() ~ "{mean} ({sd})"), #continuous variables
+              label = list(sex ~ "Sex", # label variables
+                           species ~"Species",
+                           island ~ "Island",
+                           year ~ "Year",
+                           body_mass_g ~ "Body Mass",
+                           flipper_length_mm ~ "Flipper Length",
+                           bill_depth_mm ~ "Bill Depth",
+                           bill_length_mm ~ "Bill Length" )) %>%
+  bold_labels() %>%
+  italicize_levels()
+```
+
+We now want to create a summary table by species. As we can see in the table, birds from the Gentoo species have, on average, the lager flippers: 
+
+```{r, message=FALSE}
+
+# create summary table by species 
+penguins %>%  
+  tbl_summary(by = "species",   # stratify by species
+              missing_text = "(Missing)",
+    statistic = list(all_continuous() ~ "{mean} ({sd})"),
+    label = list(sex ~ "Sex", # label variables
+                 species ~"Species",
+                 island ~ "Island",
+                 body_mass_g ~ "Body Mass",
+                 flipper_length_mm ~ "Flipper Length",
+                 bill_depth_mm ~ "Bill Depth",
+                 bill_length_mm ~ "Bill Length" )) %>%
+  bold_labels() %>% 
+  italicize_levels() 
+
+```
+
+
+
+We can also describe this data with plots.
+
+
+## Problem 2
