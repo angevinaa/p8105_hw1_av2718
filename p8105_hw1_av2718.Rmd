@@ -38,7 +38,7 @@ penguins %>%
   italicize_levels()
 ```
 
-We now want to create a summary table by species. As we can see in the table, birds from the Gentoo species have, on average, the lager flippers: 
+We now want to create a summary table by species. As we can see in the table, birds from the Gentoo species have, on average, lager flippers: 
 
 ```{r, message=FALSE}
 
