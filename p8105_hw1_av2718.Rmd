@@ -2,8 +2,8 @@
 title: "P8105 Homework I"
 date: "2022-09-27"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r, message=FALSE}
