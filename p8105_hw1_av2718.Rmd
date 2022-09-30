@@ -60,8 +60,65 @@ penguins %>%
 ```
 
 
-
 We can also describe this data with plots.
+
+```{r, message=FALSE}
+library(ggplot2)
+
+#create scatterplot
+
+f1 <- ggplot(penguins) +    
+      aes( x= flipper_length_mm, y= bill_length_mm,color=species) +
+      geom_point () +
+      labs(title="Flipper Length vs Bill Depth", x = "Flipper Length", y = "Bill Length") +
+      theme_minimal()
+                    
+f1 
+    png("f1.png")      
+
+```
 
 
 ## Problem 2
+
+Step 1 - Create a data frame:
+
+```{r, message=FALSE}
+
+# Create data frame 
+
+df <- tibble(
+        random_sample = rnorm(10),
+        logical_vector = random_sample > 0,
+        character_vector = c("a", "b","c","d","e", "f", "g", "h","i", "j"),
+        factor_vector = factor(c("low","medium","high","low","medium","high","low","medium","high","low"))
+        )
+```
+
+Step 2 - Take the mean of each variable in your dataframe:
+
+```{r, message= FALSE, warrning = FALSE, eval = FALSE}
+
+mean(df %>% pull(random_sample)) # Works 
+mean(df %>% pull(logical_vector)) # Works
+mean(df %>% pull(character_vector)) # Does not work, argument is not numeric or logical
+mean(df %>% pull(factor_vector)) # Does not work, argument is not numeric or logical
+
+```
+
+Step 3 - Convert variables from one type to another and calculate the mean:
+
+```{r,message= FALSE, warrning = FALSE, eval= FALSE}
+
+# Code chunk that applies the as.numeric function to the logical, character, and factor variables 
+
+new_1 <-as.numeric(df %>% pull(logical_vectir))
+mean(numeric_log_var) #True is converted to 1 and False is converted to 0
+
+new_2 <- as.numeric(df %>% pull(character_vector))
+mean(new_2) #The vector is now numeric. We can now calculate the mean. 
+
+new_3 <- as.numeric(df %>% pull(factor_vector))
+mean(new_3) ##The vector is now numeric. We can now calculate the mean.
+
+```
